@@ -52,19 +52,42 @@ private:
 // 重载 << 运算符
 
 #include<iostream>
+#include<iomanip>
+#include<sstream>
+
+//计算 输出字符的长度
+template<typename T>
+size_t number_of_digits(T n) {
+    std::ostringstream strs;
+    strs << n;
+    return strs.str().size();
+}
+
 
 template<typename T>
 std::ostream& operator << (std::ostream& out, const LMatrix2<T>& rhs){
-    for(int i=0; i < rhs.GetNumRows(); i++){
-        for (int j=0; j < rhs.GetNumCols(); j++){
-            if (j == 0)
-                out<<'|';
-            out<<rhs.getElement(i,j);
-            if (j < rhs.GetNumCols() - 1)
-                out<<',';
-            else
-                out<<'|';
+    // 先求解每列 最长字符
+    size_t max_len_per_column[rhs.GetNumCols()] = {0};
+    for (int i=0; i<rhs.GetNumRows(); i++)
+        for (int j=0; j< rhs.GetNumCols(); j++){
+            size_t temp_len = number_of_digits(rhs.getElement(i,j));
+            if (temp_len > max_len_per_column[j])
+                max_len_per_column[j] = temp_len;
         }
+
+    // 格式化输出
+    for(int i=0; i < rhs.GetNumRows(); i++){
+        // 行头 [ or [[
+        out<<(i==0?"[[":" [");
+        // 每行 元素
+        for (int j=0; j < rhs.GetNumCols(); j++){
+            out<<std::setw(max_len_per_column[j])<<rhs.getElement(i,j);
+            if (j < rhs.GetNumCols()-1)
+                out<<", ";
+        }
+        // 行尾 ] or ]]
+        out<<(i==rhs.GetNumRows()-1?"]]":"] ");
+        // 换行
         if (i < rhs.GetNumRows() - 1)
             out<<std::endl;
     }

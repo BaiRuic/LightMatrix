@@ -2,21 +2,21 @@
 // Created by brc on 2022/11/9.
 //
 
-#include "LMatrix2.h"
+#include "src/LMatrix2.h"
 #include<iostream>
-#include<string>
 using namespace std;
 
-
-int main(){
-    int a[6] = {3,4,5,6, 77, 88};
+void construct_test(){
+    // 初始化构造
+    int a[6] = {3,-4,5,6666666, 77, 88};
     LMatrix2<int> m1(2, 3, a);
+    std::cout<<m1<<std::endl;
+    // 拷贝构造
     LMatrix2<int> m2(m1);
     std::cout<<m2<<std::endl;
-    std::cout<<m1<<std::endl;
-    m1.transpose();
-    std::cout<<m1<<'T'<<std::endl;
-    LMatrix2<int> m3 = 4 * m2;
-    std::cout<<m3<<std::endl;
+}
+
+int main(){
+    construct_test();
     return 0;
 }
