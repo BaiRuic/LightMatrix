@@ -1,0 +1,3 @@
+C:/Users/brc/Desktop/LightMatrix/cmake-build-debug/CMakeFiles/LightMatrix.dir
+C:/Users/brc/Desktop/LightMatrix/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/brc/Desktop/LightMatrix/cmake-build-debug/CMakeFiles/rebuild_cache.dir
