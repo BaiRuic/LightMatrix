@@ -6,5 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(LightMatrix
-        LMatrix2.h
-        main.cpp)
+        src/LMatrix2.h
+        src/LMatrix2.cpp
+        main.cpp )
