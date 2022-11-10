@@ -1,6 +1,8 @@
 #ifndef __LMATRIX2_H__
 #define __LMATRIX2_H__
 
+#include <string>
+
 template<typename T>
 
 class LMatrix2{
@@ -23,6 +25,7 @@ public:
     bool SetElement(int row, int col, T elementValue);
     int GetNumRows() const;
     int GetNumCols() const;
+    std::string GetDtype();
 
 
     // 重载 == 运算符
@@ -46,6 +49,7 @@ private:
     int m_nCols;
     int m_nRows;
     int m_nElements;
+    std::string dtype;
 };
 
 
@@ -202,6 +206,12 @@ int LMatrix2<T>::GetNumRows() const {
 template<typename T>
 int LMatrix2<T>::GetNumCols() const{
     return this->m_nCols;
+}
+
+template<typename T>
+std::string LMatrix2<T>::GetDtype(){
+    this->dtype = typeid(m_matrixData[0]).name();
+    return this->dtype;
 }
 
 template<typename T>
